@@ -1,0 +1,75 @@
+<div class="col-md-4 col-md-offset-4" id="registration">
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+       <h4 class="headerCenter">Registration</h4>
+    </div>
+    <div class="panel-body">
+      <form name="registerForm"
+            ng-submit="newRegistration()"
+            novalidate="novalidate">
+        <div class="form-group">
+          <label for="fname" class="control-label">Name*</label>
+          <input type="text"
+                 autofocus
+                 name="fname"
+                 ng-model="registerModel.name"
+                 class="form-control"
+                 required="required"
+                 autocomplete="fname"
+                 placeholder="Name"
+                 id="fname">
+        </div>
+        <div class="form-group">
+          <label for="lname" class="control-label">Lastname*</label>
+          <input type="text"
+                 ng-model="registerModel.lastname"
+                 class="form-control"
+                 required="required"
+                 name="lname"
+                 placeholder="Lastname"
+                 autocomplete="lname"
+                 id="lname">
+        </div>
+        <div class="form-group">
+          <label for="email" class="control-label">Emailadress*</label>
+          <input type="email"
+                 ng-model="registerModel.email"
+                 class="form-control"
+                 placeholder="Emailadress"
+                 required="required"
+                 name="emai"l
+                 autocomplete="email"
+                 id="email">
+        </div>
+        <div class="form-group">
+          <label for="email" class="control-label">Create Password*</label>
+          <input type="{{inputType}}"
+                 ng-model="registerModel.password"
+                 class="form-control"
+
+                 ng-pattern="/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/"
+                 ng-pattern-err-type="wrongPassword"
+                 placeholder="Passwort"
+                 required="required"
+                 name="password"
+                 autocomplete="off">
+          <!--</div>-->
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+          <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+          <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
+        </div>
+
+      <button type="submit"class="btn btn-success col-md-10 col-md-offset-1">Register</button>
+      </form>
+
+    </div>
+    <!--<div class="panel-footer">-->
+    <!--</div>-->
+  </div>
+
+
+</div>

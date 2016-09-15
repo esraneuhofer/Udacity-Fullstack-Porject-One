@@ -1,0 +1,125 @@
+<div class="col-md-12">
+  <form name="outerForm" class="tab-form-demo">
+    <uib-tabset active="activeForm">
+      <uib-tab index="0" heading="Current">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="divList">
+              <table class="table table-striped" >
+                <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Type</th>
+                  <th>Host</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Location</th>
+                  <th>Information</th>
+                  <th>Guestlist</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="event in allEvent =(upcomingEvent)"
+                    ng-style="{ 'background-color': event._id == selectedEvent._id ? '#f3fdfd' : '' }"
+                    ng-click="selectEvent(event,$index)">
+                  <td>{{event.eventName}}</td>
+                  <td>{{event.eventType}}</td>
+                  <td>{{event.eventHost}}</td>
+                  <td >{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartTime |date:"HH:mm"}} </td>
+                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>/</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
+                  <td>{{event.eventLocationCity}}/{{event.eventLocationState}}</td>
+                  <td>{{event.information}}</td>
+                  <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>
+
+                </tr>
+                <tr ng-show ="allEvents.length == 0">
+                  <td colspan="8">
+                    <div class="alert alert-info">
+                      <p class="text-center">
+                        No Events found atm
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </uib-tab>
+      <uib-tab index="1" heading="Past">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="divList">
+              <table class="table table-striped" >
+                <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Type</th>
+                  <th>Host</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Location</th>
+                  <th>Information</th>
+                  <th>Guestlist</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="event in allEvent =(closedEvent)"
+                    ng-style="{ 'background-color': event._id == selectedEvent._id ? '#f3fdfd' : '' }"
+                    ng-click="selectEvent(event,$index)">
+                  <td>{{event.eventName}}</td>
+                  <td>{{event.eventType}}</td>
+                  <td>{{event.eventHost}}</td>
+                  <td >{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>at</b> {{event.eventStartTime |date:"HH:mm"}} </td>
+                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>at</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
+                  <td>{{event.eventLocationCity}}/{{event.eventLocationState}}</td>
+                  <td>{{event.information}}</td>
+                  <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>
+
+                </tr>
+                <tr ng-show ="allEvents.length == 0">
+                  <td colspan="8">
+                    <div class="alert alert-info">
+                      <p class="text-center">
+                        No Events found atm
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </uib-tab>
+    </uib-tabset>
+  </form>
+</div>
+<div class="modal fade" id="modalGuestlist" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Guestlist for Event{{selectedEvent.eventName}}</h4>
+      </div>
+      <div class="modal-body">
+
+        <ol ng-repeat="guestname in selectedEvent.guestlist ">
+          <li>{{guestname}}</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+<!--<pre>{{eventForm}}</pre>-->

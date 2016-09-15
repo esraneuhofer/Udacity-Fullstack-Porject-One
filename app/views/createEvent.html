@@ -1,0 +1,148 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="headerCenter">Add new event</h4>
+    </div>
+    <div class="panel-body">
+      <form name="eventForms"
+            ng-submit="addEvent(eventForm)"
+            novalidate="novalidate">
+        <div class="form-group">
+          <label for="eventName" class="control-label">Event*</label>
+          <input type="text"
+                 name="eventName"
+                 autofocus
+                 ng-blur="checkIfTouched(eventForms.eventName.$touched)"
+                 ng-keyup="checkIfTouched(eventForms.eventName.$touched)"
+                 ng-model="eventForm.eventName"
+                 class="form-control"
+                 required="required"
+                 placeholder="What is the Name of Event"
+                 id="eventName">
+          <span ng-show="isTouched" style="color: red;" class="help-inline">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label for="eventType" class="control-label">Type*</label>
+          <input type="text"
+                 name="eventType"
+                 ng-model="eventForm.eventType"
+                 class="form-control"
+                 required
+                 placeholder="What Type of Event is it?"
+                 id="eventType">
+
+        </div>
+        <div class="form-group">
+          <label for="eventHost" class="control-label">Host*</label>
+          <input type="text"
+                 ng-model="eventForm.eventHost"
+                 class="form-control"
+                 required="required"
+                 placeholder="Who is hosting the Event"
+                 id="eventHost">
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="eventStartDate" class="control-label">Starting Date*</label>
+              <div class="input-group">
+                <input type="text"  class="form-control" id="eventStartDate" ng-blur="checkDate(eventForm.eventStartTime,eventForm.eventEndTime,eventForm.eventStartDate,eventForm.eventEndDate)" uib-datepicker-popup="{{format}}" ng-model="eventForm.eventStartDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group timePicker">
+              <div uib-timepicker ng-model="eventForm.eventStartTime" ng-keyup="checkTime(eventForm.eventStartTime,eventForm.eventEndTime,eventForm.eventStartDate,eventForm.eventEndDate)"  hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" required="required"></div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="eventEndDate" class="control-label">End Date*</label>
+              <div class="input-group">
+                <input type="text" class="form-control" ng-blur="checkDate(eventForm.eventStartTime,eventForm.eventEndTime,eventForm.eventStartDate,eventForm.eventEndDate)" id="eventEndDate" uib-datepicker-popup="{{format}}" ng-model="eventForm.eventEndDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+              </div>
+              <span ng-hide="startDateSmaller" style="color: red">Start Date and Time must be smaller then end date and Time!</span>
+              <span ng-hide="startTimeSmaller" style="color: red">If Both Dates are the same the starting time must be smaller then end time!</span>
+
+
+              <!--<span ng-show="form.startDate.$error.required || form.endDate.$error.required">A required date is missing</span>-->
+
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group timePicker">
+              <div uib-timepicker ng-model="eventForm.eventEndTime" ng-keyup="checkTime(eventForm.eventStartTime,eventForm.eventEndTime,eventForm.eventStartDate,eventForm.eventEndDate)" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" required="required"></div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="guestlist" class="control-label">Guestlist*</label>
+          <input type="text"
+                 ng-list
+                 required="required"
+                 ng-model="eventForm.guestlist"
+                 class="form-control"
+                 placeholder="Please seperate each Guest with a ' , '"
+                 id="guestlist">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="eventLocationState" class="control-label">State*</label>
+              <input type="text"
+                     ng-model="eventForm.eventLocationState"
+                     class="form-control"
+                     required="required"
+                     placeholder="Name of the state"
+                     id="eventLocationState">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="eventLocationCity" class="control-label">City*</label>
+              <input type="text"
+                     ng-model="eventForm.eventLocationCity"
+                     class="form-control"
+                     required="required"
+                     placeholder="Name of the city"
+                     id="eventLocationCity">
+            </div>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="information" class="control-label">Information</label>
+        <textarea
+          ng-model="eventForm.information"
+          rows="3"
+          class="form-control"
+          placeholder="Usefull Information"
+          id="information">
+          </textarea>
+        </div>
+        <div class="col-md-12 requiredField">
+          <span>* required Fields</span>
+        </div>
+        <!--<button type="submit"class="btn btn-warning col-md-4 col-md-offset-4">Next</button>-->
+        <button  ng-disabled="lockButton" ng-click="submit()"  class="btn btn-success col-md-10 col-md-offset-1">Add Event</button>
+
+      </form>
+    </div>
+    <!--<div class="panel-footer">-->
+    <!--</div>-->
+  </div>
+  <pre>{{isDrity | json}}</pre>
+
+
+
+</div>
