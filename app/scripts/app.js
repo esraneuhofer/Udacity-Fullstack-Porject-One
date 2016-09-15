@@ -19,7 +19,8 @@ angular
     'ui.router',
     'ui.bootstrap',
     'ngTouch',
-    'ngMessages'
+    'ngMessages',
+    'ngMaterial'
   ])
 .run(function(defaultErrorMessageResolver){
   defaultErrorMessageResolver.getErrorMessages().then(function(errorMessages){
