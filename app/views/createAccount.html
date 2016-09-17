@@ -15,21 +15,31 @@
                    name="fname"
                    ng-model="registerModel.name"
                    class="form-control"
-                   required="required"
+                   required=""
                    autocomplete="fname"
                    placeholder="Name"
+                   ng-keyup="checkValidation()"
                    id="fname">
+            <div ng-show="registerForm.$submitted || registerForm.fname.$touched">
+              <span class="fontRed" ng-show="registerForm.fname.$error.required">Tell us your Name.</span>
+            </div>
           </div>
           <div class="form-group">
             <label for="lname" class="control-label">Lastname*</label>
             <input type="text"
+                   ng-blur=""
                    ng-model="registerModel.lastname"
                    class="form-control"
                    required="required"
                    name="lname"
                    placeholder="Lastname"
                    autocomplete="lname"
+                   ng-keyup="checkValidation()"
                    id="lname">
+            <div ng-show="registerForm.$submitted || registerForm.lname.$touched">
+              <span class="fontRed" ng-show="registerForm.lname.$error.required">Tell us your Last Name.</span>
+            </div>
+
           </div>
           <div class="form-group">
             <label for="email" class="control-label">Emailadress*</label>
@@ -38,26 +48,29 @@
                    class="form-control"
                    placeholder="Emailadress"
                    required="required"
-                   name="emai"l
+                   name="email"
                    autocomplete="email"
+                   ng-keyup="checkValidation()"
                    id="email">
+            <div ng-show="registerForm.$submitted || registerForm.email.$touched">
+              <span class="fontRed" ng-show="registerForm.email.$error.required">Tell us your email.</span>
+              <span class="fontRed" ng-show="registerForm.email.$error.email">This is not a valid email.</span>
+            </div>
           </div>
           <div class="form-group">
-            <!--ng-pattern="/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/"-->
-            <!--ng-pattern-err-type="wrongPassword"-->
             <label for="email" class="control-label">Create Password*</label>
             <input type="{{inputType}}"
                    ng-model="registerModel.password"
                    class="form-control"
                    ng-keyup="checkPassword(registerModel.password)"
                    ng-keydown="checkPassword(registerModel.password)"
-
                    placeholder="Passwort"
                    required="required"
                    name="password"
                    autocomplete="off">
-
-            <!--</div>-->
+            <div ng-show="registerForm.$submitted || registerForm.password.$touched">
+              <span class="fontRed" ng-show="registerForm.password.$error.required">Please create a password</span>
+            </div>
           </div>
           <div class="form-group">
             <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
@@ -65,29 +78,40 @@
             <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
           </div>
 
-          <button type="submit"class="btn btn-success col-md-10 col-md-offset-1">Register</button>
+          <button type="submit"class="btn btn-success col-md-10 col-md-offset-1"  ng-disabled=unlockRegButton>Register</button>
         </form>
-
       </div>
-      <!--<div class="panel-footer">-->
-      <!--</div>-->
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-primary">
-      <md-progress-linear md-mode="determinate" value="{{progreebarSpecial}}"></md-progress-linear>
-      <div class="panel-body">
-        <span ng-hide="passwordComplete" style="color: red;" class="help-inline">The Password must: </span><br>
-        <span ng-hide="passwordLength" style="color: red;" class="help-inline"> -consist of at least 12 digits </span><br>
-        <span ng-hide="passwordNumber" style="color: red;" class="help-inline"> -contain at least one Number</span><br>
-        <span ng-hide="passwordSpecialCase" style="color: red;" class="help-inline">-contain at least one special Case</span><br>
-        <span ng-hide="passwordUppercase" style="color: red;" class="help-inline">-contain at least one Uppercase</span>
-
-
+  <div class="col-md-4" id="passwordCheckbox" ng-hide="showPasswordCriteria">
+    <div class="panel panel-{{type}}">
+      <div class="panel-heading">
+        Password Strength : {{passwordStrength}}
       </div>
-      <!--<div class="panel-footer">-->
-      <!--</div>-->
+      <div class="panel-body" id="passwordCheckboxBody">
+        <div class="row">
+          <div class="col-md-1"><h5><span ng-show="passwordLength" style="color: green;" class="glyphicon glyphicon-ok-circle"></span></h5></div>
+          <div class="col-md-10"><h5><span ng-class="{fontGrey: !passwordLength, fontGreen: passwordLength}" class="help-inline">at least 12 digits </span></h5></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"><h5><span ng-show="passwordNumber" style="color: green;" class="glyphicon glyphicon-ok-circle"></span></h5></div>
+          <div class="col-md-10"><h5><span ng-class="{fontGrey: !passwordNumber, fontGreen: passwordNumber}"  class="help-inline"> at least one Number</span></h5></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"><h5><span ng-show="passwordUppercase" style="color: green;" class="glyphicon glyphicon-ok-circle"></span></h5></div>
+          <div class="col-md-10"><h5><span ng-class="{fontGrey: !passwordUppercase, fontGreen: passwordUppercase}"  class="help-inline">at least one Uppercase</span></h5></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"><h5><span ng-show="passwordSpecialCase" style="color: green;" class="glyphicon glyphicon-ok-circle"></span></h5></div>
+          <div class="col-md-10"><h5><span ng-class="{fontGrey: !passwordSpecialCase, fontGreen: passwordSpecialCase}"  class="help-inline">at least one special Case</span></h5></div>
+        </div>
+        <div id="progressBarAccount" class="col-md-12 ">
+          <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{passwordStrength}}</uib-progressbar>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>

@@ -1,6 +1,6 @@
 
 angular.module('udaciMealsApp')
-  .controller('CreateEventCtrl', function ($scope,$http) {
+  .controller('CreateEventCtrl', function ($scope,$http,$parse) {
     $scope.eventForm = {};
     $scope.addUser = function(userForm){
       $http({
@@ -67,18 +67,7 @@ angular.module('udaciMealsApp')
 
     }
 
-    $scope.checkIfTouched = function (input,nameOf) {
-      if(input === true){
-        $scope.isTouched = false;
-      }
-      else{
-        $scope.isTouched = true;
 
-      }
-    }
-    $scope.checkIfToucheds = function(input){
-      console.log(input)
-    }
 
 
     //*Datepicker*//
@@ -183,25 +172,43 @@ angular.module('udaciMealsApp')
     $scope.mstep = 15;
     $scope.ismeridian = false;
 
-    //$scope.options = {
-    //  hstep: [1, 2, 3],
-    //  mstep: [1, 5, 10, 15, 25, 30]
-    //};
-
-    //$scope.toggleMode = function() {
-    //  $scope.ismeridian = ! $scope.ismeridian;
-    //};
-
-    //$scope.update = function() {
-    //  var d = new Date();
-    //  d.setHours( 14 );
-    //  d.setMinutes( 0 );
-    //  $scope.mytime = d;
-    //};
-    //
-    //
-    //$scope.clear = function() {
-    //  $scope.mytime = null;
-    //};
-
   });
+
+//<div class="form-group">
+//  <label for="eventType" class="control-label">Type*</label>
+//  <input type="text"
+//name="eventType"
+//ng-blur="checkIfTouched(eventForms.eventName.$pristine,eventForm.eventType, 'typeTouched')"
+//ng-keydown="checkIfTouched(eventForms.eventName.$pristine,eventForm.eventType,'typeTouched')"
+//ng-model="eventForm.eventType"
+//class="form-control"
+//required
+//placeholder="What Type of Event is it?"
+//id="eventType">
+//  <span ng-show="typeTouched" style="color: red;" class="help-inline">This field is required</span>
+//
+//</div>
+//$scope.checkIfTouched = function (input,ngModel,nameOfInput) {
+//  var newScope = nameOfInput;
+//  var model = $parse(newScope );
+//  if(input == null){
+//    input="";
+//  }
+//  if(ngModel == null){
+//    ngModel="";
+//  }
+//  if(ngModel.length>0){
+//    return  model.assign($scope, false);
+//
+//  }
+//  else{
+//    if(input === true){
+//      return  model.assign($scope, true);
+//    }
+//    else{
+//      return model.assign($scope, false);
+//    }
+//  }
+//
+//
+//}

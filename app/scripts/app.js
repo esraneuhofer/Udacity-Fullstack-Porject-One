@@ -10,7 +10,6 @@
  */
 angular
   .module('udaciMealsApp', [
-    'jcs-autoValidate',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -22,12 +21,6 @@ angular
     'ngMessages',
     'ngMaterial'
   ])
-.run(function(defaultErrorMessageResolver){
-  defaultErrorMessageResolver.getErrorMessages().then(function(errorMessages){
-    errorMessages['wrongPassword']="Please enter a Password with a minimum 8 characters at least 1 Uppercase Alphabet, 1 Number and a special case letter ";
-
-  });
-})
   .config(function($stateProvider,$urlRouterProvider){
     $stateProvider.state('/',{
       url:'/',
@@ -46,25 +39,5 @@ angular
       templateUrl: 'views/createAccount.html',
       controller: 'CreateAccountCtrl',
     });
-
-
-
-
-
-    //.config(function ($routeProvider) {
-    //$routeProvider
-    //  .when('/', {
-    //    templateUrl: 'views/main.html',
-    //    controller: 'MainCtrl',
-    //    controllerAs: 'main'
-    //  })
-    //  .when('/createAccount', {
-    //    templateUrl: 'views/createAccount.html',
-    //    controller: 'createAccountCtrl',
-    //    controllerAs: 'createAccount'
-    //  })
-    //  .otherwise({
-    //    redirectTo: '/'
-    //  });
 
   });

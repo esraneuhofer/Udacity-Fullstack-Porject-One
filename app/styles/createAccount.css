@@ -7,4 +7,38 @@
 .requiredField{
   margin-bottom: 20px;
 }
+.fontRed{
+  color:red;
+  font-family: "Courier New";
+}
+.fontGrey{
+  color:grey;
+  font-family: "Courier New";
+}
+.fontGreen{
+  color:green;
+  font-family: "Courier New";
 
+
+}
+
+.passwordG {
+  font-size: 2.2em;
+}
+.fontPasswordBlack{
+  color:black;
+}
+.fontPasswordGreen{
+
+  color:green;
+}
+#progressBarAccount{
+  margin-top:30px;
+}
+#passwordCheckbox{
+  width: auto;
+}
+#passwordCheckboxBody{
+  background: #fcfcfc;
+
+}
