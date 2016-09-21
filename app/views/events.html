@@ -27,7 +27,7 @@
                   <td>{{event.eventHost}}</td>
                   <td >{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartTime |date:"HH:mm"}} </td>
                   <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>/</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
-                  <td>{{event.eventLocationCity}}/{{event.eventLocationState}}</td>
+                  <td>{{event.locality}}/{{event.streetAdress}}</td>
                   <td>{{event.information}}</td>
                   <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>
 
@@ -36,7 +36,7 @@
                   <td colspan="8">
                     <div class="alert alert-info">
                       <p class="text-center">
-                        No Events found atm
+                        No Events found...
                       </p>
                     </div>
                   </td>
@@ -71,9 +71,9 @@
                   <td>{{event.eventName}}</td>
                   <td>{{event.eventType}}</td>
                   <td>{{event.eventHost}}</td>
-                  <td >{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>at</b> {{event.eventStartTime |date:"HH:mm"}} </td>
-                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>at</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
-                  <td>{{event.eventLocationCity}}/{{event.eventLocationState}}</td>
+                  <td>{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartTime |date:"HH:mm"}} </td>
+                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>/</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
+                  <td>{{event.locality}}/{{event.streetAdress}}</td>
                   <td>{{event.information}}</td>
                   <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>
 
@@ -82,7 +82,7 @@
                   <td colspan="8">
                     <div class="alert alert-info">
                       <p class="text-center">
-                        No Events found atm
+                        No Events found...
                       </p>
                     </div>
                   </td>
@@ -101,13 +101,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Guestlist for Event{{selectedEvent.eventName}}</h4>
+        <h4 class="modal-title">Guestlist for Event "{{selectedEvent.eventName}}"</h4>
       </div>
       <div class="modal-body">
 
-        <ol ng-repeat="guestname in selectedEvent.guestlist ">
-          <li>{{guestname}}</li>
-        </ol>
+        <div ng-repeat="guestname in selectedEvent.guestlist ">
+          <h5>{{$index+1}}.{{guestname}}</h5>
+        </div>
       </div>
       <div class="modal-footer">
 
@@ -118,8 +118,3 @@
 
 
 </div>
-
-
-
-
-<!--<pre>{{eventForm}}</pre>-->

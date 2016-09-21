@@ -1,12 +1,15 @@
 
 angular.module('udaciMealsApp')
   .controller('CreateEventCtrl', function ($scope,$http,$parse) {
-    $scope.eventForm = {};
-    $scope.addUser = function(userForm){
+
+    $scope.eventModel = {};
+
+    //Add Event
+    $scope.addEvent = function(model){
       $http({
         method:'POST',
         url:'/api/addNewEvent',
-        data:userForm
+        data:model
       }).
       success(function(data){
         $state.reload();
@@ -19,23 +22,28 @@ angular.module('udaciMealsApp')
 
     }
 
+    //Check if starting Date greater then ending Date
     $scope.startDateSmaller = true;
     $scope.checkDate = function (startTime,endTime,startdate,enddate) {
+
       if(!enddate)return;
 
       if(new Date(startdate)> new Date(enddate)){
+
         $scope.startDateSmaller = false;
         $scope.lockButton = true
         $scope.startTimeSmaller = true;
 
       }
       else {
+
         $scope.startDateSmaller = true;
         $scope.lockButton = false
       }
       if((new Date(startdate)).setHours(0,0,0,0) === (new Date(enddate)).setHours(0,0,0,0)){
 
         if(new Date(startTime)< new Date(endTime)){
+
           $scope.startTimeSmaller = true;
           $scope.lockButton = false;
 
@@ -48,6 +56,7 @@ angular.module('udaciMealsApp')
 
     }
 
+    //Check if startDate = endDate -> if start Time is greater then end time
     $scope.startTimeSmaller = true;
     $scope.checkTime = function(startTime,endTime,startdate,enddate){
       if(!endTime || !enddate) return;
@@ -68,18 +77,7 @@ angular.module('udaciMealsApp')
     }
 
 
-
-
     //*Datepicker*//
-
-    $scope.today = function() {
-      $scope.dt = new Date();
-    };
-    $scope.today();
-
-    $scope.clear = function() {
-      $scope.dt = null;
-    };
 
     $scope.inlineOptions = {
       customClass: getDayClass,
@@ -121,7 +119,7 @@ angular.module('udaciMealsApp')
       $scope.dt = new Date(year, month, day);
     };
 
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.formats = ['MM-dd-yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
     $scope.altInputFormats = ['M!/d!/yyyy'];
 
@@ -172,43 +170,7 @@ angular.module('udaciMealsApp')
     $scope.mstep = 15;
     $scope.ismeridian = false;
 
+
+
   });
 
-//<div class="form-group">
-//  <label for="eventType" class="control-label">Type*</label>
-//  <input type="text"
-//name="eventType"
-//ng-blur="checkIfTouched(eventForms.eventName.$pristine,eventForm.eventType, 'typeTouched')"
-//ng-keydown="checkIfTouched(eventForms.eventName.$pristine,eventForm.eventType,'typeTouched')"
-//ng-model="eventForm.eventType"
-//class="form-control"
-//required
-//placeholder="What Type of Event is it?"
-//id="eventType">
-//  <span ng-show="typeTouched" style="color: red;" class="help-inline">This field is required</span>
-//
-//</div>
-//$scope.checkIfTouched = function (input,ngModel,nameOfInput) {
-//  var newScope = nameOfInput;
-//  var model = $parse(newScope );
-//  if(input == null){
-//    input="";
-//  }
-//  if(ngModel == null){
-//    ngModel="";
-//  }
-//  if(ngModel.length>0){
-//    return  model.assign($scope, false);
-//
-//  }
-//  else{
-//    if(input === true){
-//      return  model.assign($scope, true);
-//    }
-//    else{
-//      return model.assign($scope, false);
-//    }
-//  }
-//
-//
-//}

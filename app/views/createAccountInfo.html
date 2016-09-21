@@ -1,0 +1,76 @@
+<ng-form
+      name="registerForm.info"
+      autocomplete="on"
+      novalidate="novalidate">
+  <div class="form-group">
+    <label for="fname" class="control-label">Name*</label>
+    <input type="text"
+           autofocus
+           name="fname"
+           ng-model="registerModel.name"
+           class="form-control"
+           required
+           autocomplete="fname"
+           placeholder="Name"
+           ng-keyup="checkValidation()"
+           id="fname">
+    <div ng-show="registerForm.info.$submitted || registerForm.info.fname.$touched">
+      <span class="fontRed" ng-show="registerForm.info.fname.$error.required">Please enter us your Name.</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lname" class="control-label">Lastname*</label>
+    <input type="text"
+           ng-blur=""
+           ng-model="registerModel.lastname"
+           class="form-control"
+           required="required"
+           name="lname"
+           placeholder="Lastname"
+           autocomplete="lname"
+           ng-keyup="checkValidation()"
+           id="lname">
+    <div ng-show="registerForm.info.$submitted || registerForm.info.lname.$touched">
+      <span class="fontRed" ng-show="registerForm.info.lname.$error.required">Please us your Last Name.</span>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="email" class="control-label">Emailadress*</label>
+    <input type="email"
+           ng-model="registerModel.email"
+           class="form-control"
+           placeholder="Emailadress"
+           required="required"
+           name="email"
+           autocomplete="email"
+           ng-keyup="checkValidation()"
+           id="email">
+    <div ng-show="registerForm.info.$submitted || registerForm.info.email.$touched">
+      <span class="fontRed" ng-show="registerForm.info.email.$error.required">PLease tell us your email.</span>
+      <span class="fontRed" ng-show="registerForm.info.email.$error.email">This is not a valid email.</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="control-label">Create Password*</label>
+    <input type="{{inputType}}"
+           ng-model="registerModel.password"
+           class="form-control"
+           ng-keyup="checkPassword(registerModel.password)"
+           ng-keydown="checkPassword(registerModel.password)"
+           placeholder="Passwort"
+           required="required"
+           name="password"
+           autocomplete="off">
+    <div ng-show="registerForm.info.$submitted || registerForm.info.password.$touched">
+      <span class="fontRed" ng-show="registerForm.info.password.$error.required">Please enter a password</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
+    <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
+    <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
+  </div>
+
+  <button ui-sref="createAccount.personal" class="btn btn-success col-md-10 col-md-offset-1"  ng-disabled="unlockRegButton">Register</button>
+</ng-form>

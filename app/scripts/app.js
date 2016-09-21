@@ -38,6 +38,12 @@ angular
       url: '/createAccount',
       templateUrl: 'views/createAccount.html',
       controller: 'CreateAccountCtrl',
+    }).state('createAccount.info', {
+      url: '/createAccount-info',
+      templateUrl: 'views/createAccountInfo.html',
+    }).state('createAccount.personal', {
+      url: '/createAccount-personal',
+      templateUrl: 'views/createAccountPersonal.html',
     });
 
   });

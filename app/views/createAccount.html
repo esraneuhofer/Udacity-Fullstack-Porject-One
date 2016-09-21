@@ -5,81 +5,12 @@
         <h4 class="headerCenter">Registration</h4>
       </div>
       <div class="panel-body">
-        <form name="registerForm"
-              ng-submit="newRegistration()"
-              novalidate="novalidate">
-          <div class="form-group">
-            <label for="fname" class="control-label">Name*</label>
-            <input type="text"
-                   autofocus
-                   name="fname"
-                   ng-model="registerModel.name"
-                   class="form-control"
-                   required=""
-                   autocomplete="fname"
-                   placeholder="Name"
-                   ng-keyup="checkValidation()"
-                   id="fname">
-            <div ng-show="registerForm.$submitted || registerForm.fname.$touched">
-              <span class="fontRed" ng-show="registerForm.fname.$error.required">Tell us your Name.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="lname" class="control-label">Lastname*</label>
-            <input type="text"
-                   ng-blur=""
-                   ng-model="registerModel.lastname"
-                   class="form-control"
-                   required="required"
-                   name="lname"
-                   placeholder="Lastname"
-                   autocomplete="lname"
-                   ng-keyup="checkValidation()"
-                   id="lname">
-            <div ng-show="registerForm.$submitted || registerForm.lname.$touched">
-              <span class="fontRed" ng-show="registerForm.lname.$error.required">Tell us your Last Name.</span>
-            </div>
+        <ng-form name="registrationForm"
+                 autocomplete="on"
+                 novalidate="novalidate">
+          <ui-view></ui-view>
 
-          </div>
-          <div class="form-group">
-            <label for="email" class="control-label">Emailadress*</label>
-            <input type="email"
-                   ng-model="registerModel.email"
-                   class="form-control"
-                   placeholder="Emailadress"
-                   required="required"
-                   name="email"
-                   autocomplete="email"
-                   ng-keyup="checkValidation()"
-                   id="email">
-            <div ng-show="registerForm.$submitted || registerForm.email.$touched">
-              <span class="fontRed" ng-show="registerForm.email.$error.required">Tell us your email.</span>
-              <span class="fontRed" ng-show="registerForm.email.$error.email">This is not a valid email.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email" class="control-label">Create Password*</label>
-            <input type="{{inputType}}"
-                   ng-model="registerModel.password"
-                   class="form-control"
-                   ng-keyup="checkPassword(registerModel.password)"
-                   ng-keydown="checkPassword(registerModel.password)"
-                   placeholder="Passwort"
-                   required="required"
-                   name="password"
-                   autocomplete="off">
-            <div ng-show="registerForm.$submitted || registerForm.password.$touched">
-              <span class="fontRed" ng-show="registerForm.password.$error.required">Please create a password</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="checkbox" id="checkbox" ng-model="passwordCheckbox" ng-click="hideShowPassword()" />
-            <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
-            <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
-          </div>
-
-          <button type="submit"class="btn btn-success col-md-10 col-md-offset-1"  ng-disabled=unlockRegButton>Register</button>
-        </form>
+        </ng-form>
       </div>
     </div>
   </div>
@@ -114,4 +45,6 @@
       </div>
     </div>
   </div>
+
 </div>
+
