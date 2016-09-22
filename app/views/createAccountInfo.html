@@ -3,7 +3,7 @@
       autocomplete="on"
       novalidate="novalidate">
   <div class="form-group">
-    <label for="fname" class="control-label">Name*</label>
+    <label for="frmNameA" class="control-label">Name*</label>
     <input type="text"
            autofocus
            name="fname"
@@ -13,13 +13,13 @@
            autocomplete="fname"
            placeholder="Name"
            ng-keyup="checkValidation()"
-           id="fname">
+           id="frmNameA">
     <div ng-show="registerForm.info.$submitted || registerForm.info.fname.$touched">
       <span class="fontRed" ng-show="registerForm.info.fname.$error.required">Please enter us your Name.</span>
     </div>
   </div>
   <div class="form-group">
-    <label for="lname" class="control-label">Lastname*</label>
+    <label for="lastname" class="control-label">Lastname*</label>
     <input type="text"
            ng-blur=""
            ng-model="registerModel.lastname"
@@ -29,7 +29,7 @@
            placeholder="Lastname"
            autocomplete="lname"
            ng-keyup="checkValidation()"
-           id="lname">
+           id="lastname">
     <div ng-show="registerForm.info.$submitted || registerForm.info.lname.$touched">
       <span class="fontRed" ng-show="registerForm.info.lname.$error.required">Please us your Last Name.</span>
     </div>
@@ -52,6 +52,35 @@
     </div>
   </div>
   <div class="form-group">
+    <div ng-hide="showPasswordCriteriaMobil">
+        <div class="col-md-12">
+          <h5>
+            <span ng-class="{fontGrey: !passwordLength, fontGreen: passwordLength}" class="help-inline">at least 12 digits </span>
+            <span ng-show="passwordLength" style="color: green;" class="glyphicon glyphicon-ok-circle"></span>
+          </h5>
+        </div>
+
+        <div class="col-md-12">
+          <h5>
+            <span ng-class="{fontGrey: !passwordNumber, fontGreen: passwordNumber}"  class="help-inline"> at least one Number</span>
+            <span ng-show="passwordNumber" style="color: green;" class="glyphicon glyphicon-ok-circle"></span>
+          </h5>
+        </div>
+
+        <div class="col-md-12">
+          <h5>
+            <span ng-class="{fontGrey: !passwordUppercase, fontGreen: passwordUppercase}"  class="help-inline">at least one Uppercase</span>
+            <span ng-show="passwordUppercase" style="color: green;" class="glyphicon glyphicon-ok-circle"></span>
+          </h5>
+        </div>
+
+        <div class="col-md-12">
+          <h5>
+            <span ng-class="{fontGrey: !passwordSpecialCase, fontGreen: passwordSpecialCase}"  class="help-inline">at least one special Case</span>
+            <span ng-show="passwordSpecialCase" style="color: green;" class="glyphicon glyphicon-ok-circle"></span>
+          </h5>
+        </div>
+    </div>
     <label for="email" class="control-label">Create Password*</label>
     <input type="{{inputType}}"
            ng-model="registerModel.password"
@@ -59,9 +88,11 @@
            ng-keyup="checkPassword(registerModel.password)"
            ng-keydown="checkPassword(registerModel.password)"
            placeholder="Passwort"
+
            required="required"
            name="password"
            autocomplete="off">
+     <div ng-hide="showPasswordCriteriaMobil"><uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{passwordStrength}}</uib-progressbar></div>
     <div ng-show="registerForm.info.$submitted || registerForm.info.password.$touched">
       <span class="fontRed" ng-show="registerForm.info.password.$error.required">Please enter a password</span>
     </div>
@@ -71,6 +102,5 @@
     <label for="checkbox" ng-if="passwordCheckbox">Hide password</label>
     <label for="checkbox" ng-if="!passwordCheckbox">Show password</label>
   </div>
-
   <button ui-sref="createAccount.personal" class="btn btn-success col-md-10 col-md-offset-1"  ng-disabled="unlockRegButton">Register</button>
 </ng-form>

@@ -1,6 +1,11 @@
 'use strict';
 angular.module('udaciMealsApp')
   .controller('CreateAccountCtrl', function ($scope) {
+
+    function detectmob() {
+
+    }
+
     $scope.registerModel = {};
     $scope.registerForm={};
     $scope.inputType = 'password';
@@ -20,7 +25,7 @@ angular.module('udaciMealsApp')
         $state.reload();
 
       }).error(function () {
-
+        alert("Something went wrong please contact support")
       });
 
     }
@@ -84,8 +89,26 @@ angular.module('udaciMealsApp')
 
     //Password validation
     $scope.showPasswordCriteria=true;
+    $scope.showPasswordCriteriaMobil = true;
     $scope.checkPassword = function (password) {
-      $scope.showPasswordCriteria=false;
+      if( navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+      ){
+        $scope.showPasswordCriteria=true;
+        $scope.showPasswordCriteriaMobil = false;
+
+      }
+      else {
+        $scope.showPasswordCriteria=false;
+        $scope.showPasswordCriteriaMobil = true;
+
+
+      }
 
         if(password == null){
           password="";
@@ -185,20 +208,6 @@ angular.module('udaciMealsApp')
         $scope.checkValidation();
         $scope.progress($scope.progressTotal);
     }
-
-    //Validation Personal Form
-    $scope.buttonRegistrationPeronal ="Skip & Register"
-    $scope.isPeronalFormValid = function () {
-      if($scope.registerForm.personal.$valid){
-        $scope.buttonRegistrationPeronal ="Register"
-      }
-      else{
-        $scope.buttonRegistrationPeronal ="Save & Register"
-      }
-
-
-    }
-
 
     $scope.inlineOptions = {
       customClass: getDayClass,

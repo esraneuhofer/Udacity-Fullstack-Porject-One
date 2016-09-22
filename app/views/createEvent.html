@@ -155,7 +155,7 @@
         <!--type="text">-->
         <!--</div>-->
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div class="form-group">
               <label for="locality" class="control-label">Cityname*</label>
               <input class="field form-control"
@@ -163,38 +163,40 @@
                      id="locality"
                      name="locality"
                      required="required"
-                     placeholder="City">
+                     placeholder="New York, Chicago ...">
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div class="form-group">
-              <label for="route" class="control-label">Street address and Number</label>
+              <label for="route" class="control-label">Street Name</label>
               <input class="field form-control"
                      id="route"
                      name="route"
                      required="required"
-                     ng-model="eventModel.streetAdress"
+                     ng-model="eventModel.streetname"
                      placeholder="Adress">
             </div>
           </div>
-          <!--<div class="col-md-2">-->
-          <!--<div class="form-group">-->
-          <!--<label for="street_number" class="control-label">Nr.*</label>-->
-          <!--<input class="field form-control"-->
-          <!--name="street_number"-->
-          <!--ng-model="eventModel.streetNumber"-->
-          <!--id="street_number"-->
-          <!--required="required"-->
-          <!--placeholder="Nr.">-->
-          <!--</div>-->
-          <!--</div>-->
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="street_number" class="control-label">Nr.*</label>
+              <input class="field form-control"
+              name="street_number"
+              ng-model="eventModel.streetNumber"
+              id="street_number"
+              required="required"
+              placeholder="Nr.">
+            </div>
+          </div>
           <div ng-show="eventForm.$submitted || eventForm.locality.$touched">
             <span class="fontRed" ng-show="eventForm.locality.$error.required">Please enter the name of the City</span>
           </div>
           <div ng-show="eventForm.$submitted || eventForm.route.$touched">
             <span class="fontRed" ng-show="eventForm.route.$error.required">Please enter the name of the street</span>
           </div>
-
+          <div ng-show="eventForm.$submitted || eventForm.street_number.$touched">
+            <span class="fontRed" ng-show="eventForm.street_number.$error.required">Please enter the number of the street</span>
+          </div>
         </div>
         <div class="form-group">
           <label for="guestlist" class="control-label">Guests*</label>
@@ -213,21 +215,19 @@
         </div>
         <div class="form-group">
           <label for="information" class="control-label">Information</label>
-        <textarea
-          ng-model="eventModel.information"
-          rows="3"
-          class="form-control"
-          placeholder="Usefull Information"
-          id="information">
+           <textarea
+              ng-model="eventModel.information"
+              rows="3"
+              class="form-control"
+              placeholder="Got some usefull Information for our guest?"
+              id="information">
           </textarea>
         </div>
         <div class="col-md-12 requiredField">
           <span>* required Fields</span>
         </div>
         <button  ng-disabled="!eventForm.$valid" ng-click="submit()"  class="btn btn-success col-md-10 col-md-offset-1">Add Event</button>
-
       </form>
     </div>
   </div>
-  <!--<pre>{{eventModel | json}}</pre>-->
 </div>

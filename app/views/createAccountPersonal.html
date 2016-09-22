@@ -1,7 +1,7 @@
-<h5>Optional Fields: Can be filled out later</h5>
+<h5>Optional Fields: <u>Can be completed later!</u> </h5>
 <ng-form name="registerForm.personal"
-      novalidate="novalidate"
-      autocomplete="on">
+         novalidate="novalidate"
+         autocomplete="on">
   <div class="form-group">
     <label for="jobtitel" class="control-label">Jobtitel</label>
     <input type="text"
@@ -25,7 +25,6 @@
            class="form-control"
            placeholder="Who is your employer"
            id="fname">
-
   </div>
   <div class="form-group" >
     <md-radio-group ng-model="registerModel.gender" layout="row" required="required">
@@ -65,13 +64,9 @@
            required="required"
            placeholder="What is your nationality"
            id="nationality">
-
   </div>
-    <div class="row createAccountButtonGroup">
+  <div class="row createAccountButtonGroup">
       <button ui-sref="createAccount.info" class="btn btn-warning col-md-4 col-md-offset-1">Back</button>
-      <button ng-click="createNewAccount(registerModel)" class="btn btn-success col-md-4 col-md-offset-2 ">{{buttonRegistrationPeronal}}</button>
-
+      <button ng-click="createNewAccount(registerModel)" class="btn btn-success col-md-4 col-md-offset-2 ">Register</button>
     </div>
-
-
 </ng-form>
