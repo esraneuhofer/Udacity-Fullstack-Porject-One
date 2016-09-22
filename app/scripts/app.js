@@ -19,7 +19,7 @@ angular
     'ui.bootstrap',
     'ngTouch',
     'ngMessages',
-    'ngMaterial'
+    'ngMaterial',
   ])
   .directive('autofocus', function($timeout) {
     return {
