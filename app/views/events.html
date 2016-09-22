@@ -71,8 +71,8 @@
                   <td>{{event.eventName}}</td>
                   <td>{{event.eventType}}</td>
                   <td>{{event.eventHost}}</td>
-                  <td>{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartTime |date:"HH:mm"}} </td>
-                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>/</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
+                  <td>{{event.startEvent | date:"dd.MM.yyyy"}} <b>/</b> {{event.startEvent |date:"HH:mm"}} </td>
+                  <td>{{event.endDate | date:"dd.MM.yyyy"}}   <b>/</b> {{event.endDate |date:"HH:mm"}}</td>
                   <td>{{event.locality}}/{{event.streetAdress}} {{event.streetNumber}}</td>
                   <td>{{event.information}}</td>
                   <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>

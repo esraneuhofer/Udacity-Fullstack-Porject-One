@@ -21,6 +21,15 @@ angular
     'ngMessages',
     'ngMaterial'
   ])
+  .directive('autofocus', function($timeout) {
+    return {
+      link: function(scope, element, attrs) {
+        $timeout(function() {
+          element.focus();
+        });
+      }
+    }
+  })
   .config(function($stateProvider,$urlRouterProvider){
     $stateProvider.state('/',{
       url:'/',
@@ -45,5 +54,6 @@ angular
       url: '/createAccount-personal',
       templateUrl: 'views/createAccountPersonal.html',
     });
+
 
   });

@@ -6,7 +6,6 @@
     <label for="jobtitel" class="control-label">Jobtitel</label>
     <input type="text"
            autofocus
-           ng-keyup="isPeronalFormValid()"
            name="jobtitel"
            required="required"
            ng-model="registerModel.jobtitel"
@@ -15,42 +14,32 @@
            id="jobtitel">
   </div>
   <div class="form-group">
-    <label for="fname" class="control-label">Employer</label>
+    <label for="employer" class="control-label">Employer</label>
     <input type="text"
            autofocus
            required="required"
-           ng-keyup="isPeronalFormValid()"
-           name="fname"
+           name="employer"
            ng-model="registerModel.employer"
            class="form-control"
            placeholder="Who is your employer"
-           id="fname">
+           id="employer">
   </div>
   <div class="form-group" >
-    <md-radio-group ng-model="registerModel.gender" layout="row" required="required">
-      <md-radio-button value="Male" ng-blur="isPeronalFormValid()" class="md-primary">Male</md-radio-button>
-      <md-radio-button value="Female" ng-blur="isPeronalFormValid()" class="md-primary"> Female </md-radio-button>
+    <md-radio-group ng-model="registerModel.gender" layout="row"  required="required">
+      <md-radio-button value="Male"  class="md-primary">Male</md-radio-button>
+      <md-radio-button value="Female"  class="md-primary"> Female </md-radio-button>
     </md-radio-group>
   </div>
   <div class="form-group">
     <label for="birthday" class="control-label">Birthday</label>
     <div class="input-group">
-      <input type="text"
-             placeholder="for example : 22-02-1965"
+      <input type="datetime-local"
              class="form-control"
              id="birthday"
-             ng-blur="isPeronalFormValid()"
              name="eventStartDate"
-             uib-datepicker-popup="{{format}}"
              ng-model="registerModel.birthday"
-             is-open="popup1.opened"
-             datepicker-options="dateOptions"
-             ng-required="true"
-             close-text="Close"
-             alt-input-formats="altInputFormats" />
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-                  </span>
+             ng-required="true">
+
     </div>
   </div>
   <div class="form-group">
@@ -68,5 +57,5 @@
   <div class="row createAccountButtonGroup">
       <button ui-sref="createAccount.info" class="btn btn-warning col-md-4 col-md-offset-1">Back</button>
       <button ng-click="createNewAccount(registerModel)" class="btn btn-success col-md-4 col-md-offset-2 ">Register</button>
-    </div>
+  </div>
 </ng-form>

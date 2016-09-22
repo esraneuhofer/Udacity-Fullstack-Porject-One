@@ -77,18 +77,20 @@
         <div class="col-md-12">
           <h5>
             <span ng-class="{fontGrey: !passwordSpecialCase, fontGreen: passwordSpecialCase}"  class="help-inline">at least one special Case</span>
-            <span ng-show="passwordSpecialCase" style="color: green;" class="glyphicon glyphicon-ok-circle"></span>
+            <span ng-show="passwordSpecialCase" style="color: green;" class="glyphicon glyphicon-ok-circle"></span><br>
+            <span ng-class="{fontGrey: !passwordSpecialCase, fontGreen: passwordSpecialCase}"  class="help-inline">["!", "§", "$", "%", "&", "/", "(", ")", "=", "?"]</span>
+
           </h5>
         </div>
     </div>
-    <label for="email" class="control-label">Create Password*</label>
+    <label for="password" class="control-label">Create Password*</label>
     <input type="{{inputType}}"
            ng-model="registerModel.password"
            class="form-control"
            ng-keyup="checkPassword(registerModel.password)"
            ng-keydown="checkPassword(registerModel.password)"
            placeholder="Passwort"
-
+           id="password"
            required="required"
            name="password"
            autocomplete="off">

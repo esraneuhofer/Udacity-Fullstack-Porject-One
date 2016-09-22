@@ -2,7 +2,7 @@
   text-align: center;
 }
 .timePicker{
-  margin-top: -10px;
+  margin-top: -28px;
 }
 .requiredField{
   margin-bottom: 20px;
@@ -44,4 +44,10 @@
 }
 .createAccountButtonGroup{
   margin-top: 30px;
+}
+@media screen and (max-width: 640px) {
+  table {
+    overflow-x: auto;
+    display: block;
+  }
 }
