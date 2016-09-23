@@ -19,7 +19,7 @@ angular
     'ui.bootstrap',
     'ngTouch',
     'ngMessages',
-    'ngMaterial',
+    'ngMaterial'
   ])
   .directive('autofocus', function($timeout) {
     return {
@@ -30,7 +30,7 @@ angular
       }
     }
   })
-  .config(function($stateProvider,$urlRouterProvider){
+  .config(function($stateProvider){
     $stateProvider.state('/',{
       url:'/',
       templateUrl:'views/main.html',

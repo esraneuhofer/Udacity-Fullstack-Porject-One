@@ -1,3 +1,4 @@
+'use strict';
 
 angular.module('udaciMealsApp')
   .controller('EventCtrl', function ($scope,$http) {
