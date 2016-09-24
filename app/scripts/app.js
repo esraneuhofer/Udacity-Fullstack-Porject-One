@@ -28,7 +28,7 @@ angular
           element.focus();
         });
       }
-    }
+    };
   })
   .config(function($stateProvider){
     $stateProvider.state('/',{

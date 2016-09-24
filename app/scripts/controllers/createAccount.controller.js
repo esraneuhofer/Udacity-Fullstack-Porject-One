@@ -10,10 +10,13 @@ angular.module('udaciMealsApp')
     $scope.registerForm={};
     $scope.inputType = 'password';
     $scope.hideShowPassword = function () {
-      if ($scope.inputType == 'password')
+      if ($scope.inputType === 'password'){
         $scope.inputType = 'text';
-      else
+      }
+      else{
         $scope.inputType = 'password';
+
+      }
     };
     $scope.createNewAccount = function (userForm) {
       $http({
@@ -23,7 +26,6 @@ angular.module('udaciMealsApp')
       }).
       success(function (data) {
         $state.reload();
-
       }).error(function () {
         alert("Something went wrong please contact support")
       });

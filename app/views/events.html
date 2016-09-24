@@ -13,21 +13,22 @@
                   <th>Host</th>
                   <th>Start</th>
                   <th>End</th>
-                  <th>Location</th>
+                  <th>Adress</th>
+                  <th>Name of Location</th>
                   <th>Information</th>
                   <th>Guestlist</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="event in allEvent =(upcomingEvent)"
-                    ng-style="{ 'background-color': event._id == selectedEvent._id ? '#f3fdfd' : '' }"
                     ng-click="selectEvent(event,$index)">
                   <td>{{event.eventName}}</td>
                   <td>{{event.eventType}}</td>
                   <td>{{event.eventHost}}</td>
-                  <td >{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartTime |date:"HH:mm"}} </td>
-                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}} <span ng-hide="!event.eventEndDate"> <b>/</b> </span>{{event.eventEndTime |date:"HH:mm"}}  <span ng-hide="!event.eventEndDate"> </span></td>
-                  <td>{{event.locality}}/{{event.streetAdress}}</td>
+                  <td>{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartDate |date:"HH:mm"}} </td>
+                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}}   <b>/</b> {{event.eventEndDate |date:"HH:mm"}}</td>
+                  <td>{{event.locality}}/{{event.streetAdress}} {{event.streetNumber}}</td>
+                  <td>{{event.nameLocation}}</td>
                   <td>{{event.information}}</td>
                   <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>
 
@@ -43,6 +44,7 @@
                 </tr>
                 </tbody>
               </table>
+
             </div>
           </div>
         </div>
@@ -59,21 +61,22 @@
                   <th>Host</th>
                   <th>Start</th>
                   <th>End</th>
-                  <th>Location</th>
+                  <th>Adress</th>
+                  <th>Name of Location</th>
                   <th>Information</th>
                   <th>Guestlist</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="event in allEvent =(closedEvent)"
-                    ng-style="{ 'background-color': event._id == selectedEvent._id ? '#f3fdfd' : '' }"
                     ng-click="selectEvent(event,$index)">
                   <td>{{event.eventName}}</td>
                   <td>{{event.eventType}}</td>
                   <td>{{event.eventHost}}</td>
-                  <td>{{event.startEvent | date:"dd.MM.yyyy"}} <b>/</b> {{event.startEvent |date:"HH:mm"}} </td>
-                  <td>{{event.endDate | date:"dd.MM.yyyy"}}   <b>/</b> {{event.endDate |date:"HH:mm"}}</td>
+                  <td>{{event.eventStartDate | date:"dd.MM.yyyy"}} <b>/</b> {{event.eventStartDate |date:"HH:mm"}} </td>
+                  <td>{{event.eventEndDate | date:"dd.MM.yyyy"}}   <b>/</b> {{event.eventEndDate |date:"HH:mm"}}</td>
                   <td>{{event.locality}}/{{event.streetAdress}} {{event.streetNumber}}</td>
+                  <td>{{event.nameLocation}}</td>
                   <td>{{event.information}}</td>
                   <td><a data-toggle="modal" data-target="#modalGuestlist">{{countguest(event.guestlist)}}</a></td>
 
@@ -101,7 +104,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Guestlist for Event "{{selectedEvent.eventName}}"</h4>
+        <h4 class="modal-title headerCenter">Guestlist for Event <br>"{{selectedEvent.eventName}}"</h4>
       </div>
       <div class="modal-body">
 
