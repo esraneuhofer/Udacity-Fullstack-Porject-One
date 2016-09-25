@@ -33,11 +33,8 @@ angular.module('udaciMealsApp')
 
     $scope.validateDate = function(startDate,endDate){
       var today = new Date();
-      //if($scope.eventForm.eventStartDate.$pristine){
-      //
-      //}
-      //else{
 
+      //console.log($scope.startDateSmaller+"1")
         if(Date.parse(today)>Date.parse(startDate) ||!$scope.eventForm.eventStartDate.$valid ){
           //$scope.minDate  =false;
           $scope.lockEndDate = true;
@@ -47,74 +44,58 @@ angular.module('udaciMealsApp')
           $scope.lockEndDate = false;
 
         }
+      console.log("start"+Date.parse(startDate))
+      console.log("end"+Date.parse(endDate))
+      console.log("compare"+Date.parse(startDate)<Date.parse(endDate))
         if(Date.parse(startDate) < Date.parse(endDate)){
+
           $scope.startDateSmaller = true;
           $scope.dateValid= true;
+          $scope.inValidMinDate = true;
+          console.log($scope.startDateSmaller+"2")
+
+
         }
         if(Date.parse(startDate) === Date.parse(endDate)){
           $scope.startDateSmaller = false;
+          $scope.inValidMinDate = false;
+          console.log($scope.startDateSmaller+"3")
+
+
+
           $scope.dateValid= false;
         }
         if(Date.parse(startDate) > Date.parse(endDate)){
           $scope.startDateSmaller = false;
           $scope.dateValid= false;
-        }
-      //}
+          $scope.inValidMinDate = false;
+          console.log($scope.startDateSmaller+"4")
 
-      //if(startDate > endDate){
-      //  console.log("greater");
-      //  $scope.startDateSmaller = false;
-      // $scope.dateValid= false;
-      //}
-      //else{
-      //  $scope.startDateSmaller = true;
-      //  $scope.dateValid = true;
-      //}
-      //var start = new Date(startDate);
-      //var end = new Date(endDate);
-      //
-      //var hoursStart = start.getHours();
-      //var minutesStart = start.getMinutes();
-      //var hoursEnd = end.getHours();
-      //var minutesEnd = end.getMinutes();
-      //
-      //var startTime = "" + hoursStart + minutesStart;
-      //var endTime = "" + hoursEnd + minutesEnd;
-      //
-      //var startTimeNumber = parseFloat(startTime);
-      //var endTimeNumber = parseFloat(endTime);
-      //
-      //if(start.setHours(0,0,0,0) === end.setHours(0,0,0,0)){
-      //
-      //  if(startTimeNumber >= endTimeNumber){
-      //    $scope.startDateSmaller = false;
-      //    $scope.dateValid = false;
-      //  }
-      //  else{
-      //    $scope.startDateSmaller = true;
-      //    $scope.dateValid = true;
-      //  }
-      //}
+
+
+
+
+        }
+      //console.log($scope.startDateSmaller+"5")
+
     }
     $scope.minDateMessage = function(startDate){
       var todayStart = new Date();
-
+      console.log(Date.parse(todayStart)>Date.parse(startDate));
       if(Date.parse(todayStart)>Date.parse(startDate)){
         $scope.minDate  = false;
       }
       else{
         $scope.minDate  = true;
       }
-    //if(!$scope.eventForm.eventStartDate.$valid){
-    //  $scope.startDateInvalid = false
-    //
-    //}
-    //else{
-    //  $scope.startDateInvalid = true;
-    //
-    //}
     }
-    $scope.minDate = new Date();
+    $scope.minDateSet = new Date();
+    //$scope.minDateEnd = "";
+    $scope.setminDateEnd  = function (startDate) {
+      var newDateObj = new Date(startDate.getTime() + 1*60000);
+      $scope.minDateEnd = newDateObj;
+    }
+
     $scope.isValid = function(){
 
       if($scope.eventForm.$valid && $scope.dateValid === true){

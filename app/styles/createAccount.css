@@ -50,7 +50,42 @@
     overflow-x: auto;
     display: block;
   }
+
+
 }
 .eventType{
-  margin-top:2px;
+  margin-top:5px;
+}
+
+.eventFormValidation input.ng-invalid.ng-touched {
+  background-color: #FFD9D9;
+}
+
+.eventFormValidation input.ng-valid.ng-touched {
+  background-color: #D9FFD9;
+}
+.eventFormValidation input.ng-valid.ng-touched {
+  background-color: #D9FFD9;
+}
+.eventFormValidation textarea.ng-invalid.ng-touched {
+  background-color: #FFD9D9;
+}
+
+.eventFormValidation textarea.ng-valid.ng-touched {
+  background-color: #D9FFD9;
+}
+
+.registrationForm input.ng-invalid.ng-touched {
+  background-color: #FFD9D9;
+}
+
+.registrationForm input.ng-valid.ng-touched {
+  background-color: #D9FFD9;
+}
+.inValidMinDateCss{
+  /*background-color: #FFD9D9;!important;*/
+}
+.validMinDateCss{
+  /*background-color: #D9FFD9;!important;*/
+
 }

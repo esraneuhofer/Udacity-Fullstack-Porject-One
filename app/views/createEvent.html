@@ -3,8 +3,10 @@
     <div class="panel-heading">
       <h4 class="headerCenter">Add new event</h4>
     </div>
+
     <div class="panel-body">
       <form name="eventForm"
+            class="eventFormValidation"
             novalidate="novalidate">
         <div class="row">
           <div class="col-md-6">
@@ -15,7 +17,7 @@
                      autofocus
                      ng-keyup="isValid()"
                      ng-model="eventModel.eventName"
-                     class="form-control"
+                     class="form-control validationInput"
                      required="required"
                      placeholder="What is the Name of Event"
                      id="eventName">
@@ -31,7 +33,7 @@
                        name="eventType"
                        type="text"
                        ng-keyup="isValid()"
-                       class="form-control"
+                       class="form-control validationInput"
                        required="required"
                        ng-model="eventModel.eventType"/>
               </label>
@@ -48,19 +50,22 @@
             </div>
           </div>
         </div>
+
         <div class="form-group">
           <label for="eventHost" class="control-label">Host of the Event</label>
           <input type="text"
                  name="eventHost"
                  ng-keyup="isValid()"
                  ng-model="eventModel.eventHost"
-                 class="form-control"
+                 class="form-control validationInput"
                  required="required"
                  placeholder="Could be an individual’s name or an organization"
                  id="eventHost">
           <div ng-show="eventForm.$submitted || eventForm.eventHost.$touched">
             <span class="fontRed" ng-show="eventForm.eventHost.$error.required">Please enter the name of the Host</span>
           </div>
+          <!--ng-style="((eventForm.$submitted || eventForm.eventStartDate.$touched) && !eventForm.eventStartDate.$valid) && {'background-color':'#FFD9D9'}"-->
+          <!--ng-class="{inValidMinDateCss: inValidMinDate === false || minDate === true, validMinDateCss: inValidMinDate === true || minDate ==true}"-->
 
         </div>
         <div class="row">
@@ -70,24 +75,20 @@
                 <input type="datetime-local"
                        name="eventStartDate"
                        ng-model="eventModel.eventStartDate"
-                       class="form-control"
-                       min="{{minDate | date:'yyyy-MM-ddTHH:mm'}}"
+                       class="form-control inputDate"
+                       min="{{minDateSet | date:'yyyy-MM-ddTHH:mm'}}"
                        required="required"
                        ng-keyup="validateDate(eventModel.eventStartDate,eventModel.eventEndDate);isValid()"
-                       ng-blur="minDateMessage(eventModel.eventStartDate)"
+                       ng-blur="setminDateEnd(eventModel.eventStartDate)"
                        id="eventStartDate">
-
-                <span ng-hide="minDate" class="fontRed">The Starting Date cant be in the Past</span>
-                <span ng-hide="startDateSmaller" class="fontRed">Start Date and Time must be smaller then end date and Time!</span>
-
                 <div ng-show="eventForm.$submitted || eventForm.eventStartDate.$touched">
                   <span ng-hide="eventForm.eventStartDate.$valid" class="fontRed">Please enter a correct Date</span>
-                  <!--<span class="fontRed" ng-show="eventForm.eventStartDate.$error.required">Please enter a starting Date and Time</span>-->
                 </div>
 
               </div>
             </div>
-            <div class="col-md-6">
+
+          <div class="col-md-6">
               <div class="form-group">
                 <label for="eventEndDate" class="control-label">Ending Date&Time</label>
                 <input type="datetime-local"
@@ -96,9 +97,10 @@
                        ng-model="eventModel.eventEndDate"
                        class="form-control"
                        required="required"
-                       min="{{minDate | date:'yyyy-MM-ddTHH:mm'}}"
+                       min="{{minDateEnd | date:'yyyy-MM-ddTHH:mm'}}"
                        ng-keyup="validateDate(eventModel.eventStartDate,eventModel.eventEndDate);isValid()"
                        id="eventEndDate">
+                <span class="fontRed" ng-show="eventForm.eventEndDate.$error.min">Start Date and Time must be smaller then end date and Time!</span>
                 <div ng-show="eventForm.$submitted || eventForm.eventEndDate.$touched">
                   <span class="fontRed" ng-show="eventForm.eventEndDate.$error.required">Please enter a end Date and Time</span>
                 </div>
@@ -109,7 +111,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="locality" class="control-label">Cityname*</label>
-              <input class="field form-control"
+              <input class="field form-control validationInput"
                      ng-keyup="isValid()"
                      ng-model="eventModel.locality"
                      id="locality"
@@ -125,7 +127,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="route" class="control-label">Street Name</label>
-              <input class="field form-control"
+              <input class="field form-control validationInput"
                      id="route"
                      name="route"
                      ng-keyup="isValid()"
@@ -141,7 +143,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="street_number" class="control-label">Nr.*</label>
-              <input class="field form-control"
+              <input class="field form-control validationInput"
               name="street_number"
                ng-keyup="isValid()"
                ng-model="eventModel.streetNumber"
@@ -158,8 +160,7 @@
         </div>
         <div class="form-group">
             <label for="nameLocation" class="control-label">Name of Location</label>
-            <input class="field form-control"
-                   ng-keyup="isValid()"
+            <input class="field form-control validationInput"
                    ng-model="eventModel.nameLocation"
                    id="nameLocation"
                    name="nameLocation"
@@ -173,7 +174,7 @@
                     required="required"
                     ng-keyup="isValid()"
                     ng-model="eventModel.guestlist"
-                    class="form-control"
+                    class="form-control validationInput"
                     placeholder="Please seperate each Guest with a ' , '"
                     id="guestlist">
           </textarea>
